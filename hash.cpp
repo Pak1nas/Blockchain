@@ -55,8 +55,6 @@ string generateHash(const string& ivedimas){
 
     uint64_t pozicija = 0;
 
-    // Ivesties simboliu apdorojimas
-
     for(unsigned char c : ivedimas){
 
         pozicija++;
@@ -86,8 +84,6 @@ string generateHash(const string& ivedimas){
         rez1 ^= pozicija;
         rez3 ^= rez4;
     }
-
-    // Ivesties ilgio itraukimas
 
     uint64_t ilgis = ivedimas.size();
 
