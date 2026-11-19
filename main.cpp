@@ -1,35 +1,45 @@
 #include <iostream>
 #include "user.h"
 #include "hash.h"
+#include "transaction.h"
 
 using namespace std;
 
-int main()
-{
-
-    cout<< "1. Programa pradeta"<<endl;
-
-    cout<< "2. Hash testas: "<<generateHash("labas") << endl;
-
-    cout << "3. Generuojami vartotojai" << endl;
+int main(){
 
     vector<User> users = generateUsers(1000);
 
-    cout << "4. Vartotojai sugeneruoti" << endl;
-
     saveUsers(users);
-
-    cout << "5. Vartotojai issaugoti" << endl;
 
     int64_t totalBalance = 0;
 
-    for(const User& user : users)
-    {
+    for(const User& user : users){
+
         totalBalance += user.balance;
     }
 
-    cout << "Vartotoju skaicius: "<< users.size() << endl;
+    cout << "Vartotoju skaicius: " << users.size() << endl;
 
-    cout << "Bendra lesu suma: "<< totalBalance << endl;
+    cout << "Pradine lesu suma: " << totalBalance << endl;
+
+    vector<Transaction> transactions =
+        generateTransactions(users, 10000);
+
+    saveTransactions(transactions);
+
+    cout << "Transakciju skaicius: " << transactions.size() << endl;
+
+    cout << "\nPirmoji transakcija:\n";
+
+    cout << "Siuntejas: " << transactions[0].sender << endl;
+
+    cout << "Gavejas: " << transactions[0].receiver << endl;
+
+    cout << "Suma: " << transactions[0].amount << endl;
+
+    cout << "Sequence: " << transactions[0].sequence << endl;
+
+    cout << "Transaction ID: " << transactions[0].transaction_id << endl;
+
     return 0;
 }
